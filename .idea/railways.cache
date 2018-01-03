@@ -1,0 +1,5 @@
+      Prefix Verb URI Pattern            Controller#Action
+     profits POST /profits(.:format)     profits#create
+  new_profit GET  /profits/new(.:format) profits#new
+        root GET  /                      profits#new
+profits_root GET  /profits(.:format)     profits#new

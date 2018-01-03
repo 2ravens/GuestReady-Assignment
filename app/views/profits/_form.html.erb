@@ -1,0 +1,43 @@
+
+<%= form_with model: @profit, local: true do |form| %>
+
+    <% if @profit.errors.any? %>
+        <ul>
+          <% @profit.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+
+    <div>
+      <%= form.label :average_long_term_rent, "Average Long Term Rental Income in Location:" %><br/>
+      <%= form.text_field :average_long_term_rent, placeholder: "0.00",class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.label :address, "Address in Location:" %><br/>
+      <%= form.text_field :address, id: :profit_address, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.label :airbnb_income, "Airbnb Monthly Potential for Location:" %><br/>
+      <%= form.text_field :airbnb_income, placeholder: "0.00", class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.submit "Calculate Profit" %>
+    </div>
+
+    <div>
+      <% if !@profit_loss.blank? %>
+
+          <% if @profit_loss >= 0 %>
+              <p>Potential Profit with Airbnb: <%= number_to_currency @profit_loss %></p>
+          <% else %>
+              <p>Potential Loss with Airbnb: <%= number_to_currency (@profit_loss * -1) %></p>
+          <% end %>
+
+      <% end %>
+    </div>
+
+<% end %>
